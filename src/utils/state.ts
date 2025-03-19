@@ -1,25 +1,26 @@
 import { WebSocket } from "ws"
 
-type User = {
+export type Socket = WebSocket & {
+	isAlive: boolean
+}
+
+export interface User {
 	socket: Socket
 	pseudo: string
 }
 
-export type State = {
-	status: "ROOM" | "NICKNAME" | "CONNECTED"
-	roomCode: string
-	user: User
+export interface State {
+	ws: Socket
+	status: "ROOM" | "NICKNAME" | "CONNECTED" | "MATCHMAKING"
+	room?: string
+	nickname?: string
 }
 
-export type Socket = WebSocket & { isAlive: boolean }
-
-export const newState = (socket: Socket): State => ({
-	status: "ROOM",
-	roomCode: null,
-	user: {
-		socket: socket,
-		pseudo: null,
-	},
-})
+export function newState(ws: Socket): State {
+	return {
+		ws,
+		status: "ROOM",
+	}
+}
 
 export const rooms = new Map<string, Set<User>>()

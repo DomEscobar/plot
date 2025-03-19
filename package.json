@@ -2,20 +2,25 @@
 	"name": "plot",
 	"version": "1.0.0",
 	"author": "dayblox",
-	"description": "WebSocket chatrooms server",
 	"engines": {
 		"node": ">=18.11",
 		"pnpm": ">=7.27"
 	},
 	"scripts": {
-		"dev": "pnpm /dev:.*/",
-		"dev:build": "esbuild dev.ts ./src --bundle --outdir=dist --packages=external --platform=node --sourcemap --watch",
-		"dev:run": "node --inspect --no-warnings --loader ./dist/dev.js --watch dist/src",
+		"dev": "esbuild index=./src --bundle --outdir=dist --packages=external --platform=node --watch --sourcemap",
 		"build": "esbuild index=./src --bundle --minify --outdir=dist --packages=external --platform=node",
-		"start": "node dist"
+		"start": "node dist",
+		"serve": "npm run build && npm start"
 	},
 	"dependencies": {
+		"@types/better-sqlite3": "^7.6.12",
+		"@types/cors": "^2.8.17",
+		"@types/express": "^5.0.0",
+		"better-sqlite3": "^11.9.1",
+		"cors": "^2.8.5",
 		"esbuild": "^0.17.16",
+		"express": "^4.21.2",
+		"socket.io": "^4.8.1",
 		"ws": "^8.13.0"
 	},
 	"devDependencies": {
