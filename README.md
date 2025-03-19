@@ -1,3 +1,3 @@
 # Plot
 
-Blobgotchi socket server
+Blobgotchi socket serveresded
